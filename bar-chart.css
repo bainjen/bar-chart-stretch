@@ -1,4 +1,23 @@
 body {
   font-size: 18px;
-  color: blue; 
+  color: blue;
+}
+
+.graph-container {
+  display: flex;
+  align-items: flex-end;
+  width: 75vw;
+  height:50vh;
+  border-style: solid;
+  border-color: black;
+  background-color: blueviolet;
+}
+
+.bar {
+  background-color: chartreuse;
+  border-style: dotted;
+  width: 12vw;
+  height: 40vh;
+  margin: 7px;
+
 }

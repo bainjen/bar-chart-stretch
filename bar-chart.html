@@ -3,7 +3,6 @@
 
   <head>
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="/Users/jenniferbain/lighthouse/bar-chart-stretch/bar-chart.css">
     <title>Bar Chart Generator</title>
   </head>
@@ -12,29 +11,37 @@
     <header>
       <h1>Let's make a bar chart!</h1>
     </header>
+
     <main>
 
       <div class="param-choices">
         <p>Eventually this is where the user will set their preferences</p>
+        <form action="/action_page.php">
+          <label for="grname">graph name:</label>
+          <input type="text" id="grname" name="grname"><br><br>
+          <label for="xaxis">x axis label:</label>
+          <input type="text" id="xaxis" name="xaxis"><br><br>
+          <label for="yaxis">y axis label:</label>
+          <input type="text" id="yaxis" name="yaxis"><br><br>
+          <input type="submit" value="Submit">
+        </form>
+        <form> </form>
       </div>
 
-      <div class="graph-container">
-        <div class="bar">
-
-        </div>
-        <div class="bar">
-
-        </div>
-        <div class="bar">
-
-        </div>
-        <div class="bar">
-
-        </div>
-        <div class="bar">
+      <div>
+        <h1 class="graph-title">Your Graph Will Go Below :D</h1>
+        <div class="graph-container">
 
         </div>
       </div>
+
+
+
+      <script>
+        $( document ).ready(function() {
+        drawBarChart(data, options, element);
+        });
+        </script>
 
     </main>
 
@@ -42,6 +49,8 @@
   </body>
 
   <footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
   </footer>
 
 </html>

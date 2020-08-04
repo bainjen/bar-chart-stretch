@@ -2,8 +2,36 @@
 
 
 
+let data = [1, 2, 3, 4, 5];
 
+let options = {
+  width: 5,
+  height: 10,
+  barColor: 'red',
+  labelColor: 'black',
+  titleMain: 'Hello',
+  titleY: 'y title',
+  titleX: 'x title',
 
+}
+
+//A FEW BASICS
+// .add()
+// Create a new jQuery object with elements added to the set of matched elements.
+
+// .append()
+// Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+
+// .appendTo()
+// Insert every element in the set of matched elements to the end of the target.
+
+// .width()
+
+// <canvas>	Used to draw graphics, on the fly, via scripting (usually JavaScript)
+
+function addBar() {
+
+}
 
 //this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
 let drawBarChart = (data, options, element) => {
@@ -38,8 +66,8 @@ let drawBarChart = (data, options, element) => {
 // Bar Chart axes
 // X-axis should show labels for each data value
 
-// Think about how you would need to structure your data to associate a label to each value
-// Y-axis should show ticks at certain values ---> OBJECT
+// Think about how you would need to structure your data to associate a label to each value---> OBJECT
+// Y-axis should show ticks at certain values
 
 // Think about where you would configure these values. Should they be part of the data or the options to the bar chart function.
 // The title of the bar chart should be able to be set and shown dynamically

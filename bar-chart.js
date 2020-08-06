@@ -1,8 +1,35 @@
 
 
+let chartName = 'My Dogs';
+//need to tie this to user submission
 
-
-// let data = [1, 2, 3, 4, 5];
+let barData = [
+  {
+    name: 'Prairie',
+    age: 6,
+    weight: 21
+  },
+  {
+    name: 'Pippa',
+    age: 8,
+    weight: 25
+  },
+  {
+    name: 'Po',
+    age: 14,
+    weight: 40
+  },
+  {
+    name: 'Ziggy',
+    age: 3,
+    weight: 52
+  },
+  {
+    name: 'Jane Goodall',
+    age: 7,
+    weight: 39
+  },
+];
 
 // let options = {
 //   width: 5,
@@ -49,10 +76,17 @@
 // console.log(stepOne)
 
 
-function addBar(num) {
+function addBar(num, label) {
   for (let i = 0; i < num; i++) {
-    $('.graph-container').append('<div class="bar"></div>');
+    // let name = barData[i].name
+    const { name, age } = barData[i];
+    $('.graph-container').append('<div class="bar"><p>'+name+'</p></div>');
   }
+}
+
+function setChartNames() {
+  $('.graph-title').replaceWith(chartName);
+//need to tie this to user submission
 }
 
 
@@ -111,7 +145,8 @@ let drawBarChart = (data, options, element) => {
 // Customizable bar colours, per value
 // Customizable label colours
 $(document).ready(function () {
-  addBar(15);
+  addBar(barData.length);
+  setChartNames();
   drawBarChart();
 }
 )

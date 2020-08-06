@@ -12,6 +12,17 @@ main {
 body {
   font-size: 18px;
   color: blue;
+  margin: 1em;
+}
+
+.param-choices {
+  margin: 1em;
+}
+
+.graph-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .graph-container {

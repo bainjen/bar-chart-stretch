@@ -2,18 +2,18 @@
 
 
 
-let data = [1, 2, 3, 4, 5];
+// let data = [1, 2, 3, 4, 5];
 
-let options = {
-  width: 5,
-  height: 10,
-  barColor: 'red',
-  labelColor: 'black',
-  titleMain: 'Hello',
-  titleY: 'y title',
-  titleX: 'x title',
+// let options = {
+//   width: 5,
+//   height: 10,
+//   barColor: 'red',
+//   labelColor: 'black',
+//   titleMain: 'Hello',
+//   titleY: 'y title',
+//   titleX: 'x title',
 
-}
+// }
 
 //A FEW BASICS
 // .add()
@@ -29,10 +29,49 @@ let options = {
 
 // <canvas>	Used to draw graphics, on the fly, via scripting (usually JavaScript)
 
+//.data()
+//Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
+
+
+// $(function(){  //equivalent to $(document).read(function(){});
+// //you are running "joID(form)" on submit now, but have it written/called right in the html.  i try to avoid that.
+//   $("form[name='JobIdForm']").submit(function(event){
+// //i did not see an actual form[action] value, so I preventDefault() to call that out
+//     event.preventDefault();
+// //we want the value in bob, so I have jQuery create a <div> and throw the input value between the element tags
+//     $("#bob").append($("<div>"+$(this).find("input[name='jobid']").val()+"</div>");
+//   });
+
+// });
+// html needed to make the above work:
+// <form name="JobIdForm" action="" method="post">
+// <label>Job ID <input type="text" name="jobid"></label>
+// <input type="submit" value="Submit">
+
+// </form>
+
+// function basicInfo()
+$('#stepOne').submit(function (e) {
+  e.preventDefault();
+
+  // let title = $('#title').val();
+  // let body = $('#body').val();
+  // let url = $(this).attr('action');
+
+  let stepOne = {
+    grname: $('grname').val(),
+    yaxis: $('yaxis').val(),
+    xaxis: $('xaxis').val(),
+    numOfBars: $('numOfBars').val
+  }
+});
+
+console.log(stepOne)
+
+
 function addBar() {
   $('.graph-container').append('<div class="bar"></div>')
 }
-
 
 
 

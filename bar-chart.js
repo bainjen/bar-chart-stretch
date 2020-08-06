@@ -2,6 +2,7 @@
 
 let chartName;
 let barData = [];
+let graphData;
 
 //need to tie this to user submission
 
@@ -78,14 +79,12 @@ const basicInfo = () => {
       xaxis: $('input#xaxis').val(),
       numOfBars: $('input#numOfBars').val()
     };
-    barData.push(stepOneInput);
+    graphData = stepOneInput;
+    console.log(graphData);
     console.log(barData)
     $('form#stepOne').hide();
-    return barData;
+    return graphData;
   })
-
-
-
 
 };
 

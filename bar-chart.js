@@ -1,35 +1,45 @@
 
 
-let chartName = 'My Dogs';
+let chartName;
+let barData = [];
+
 //need to tie this to user submission
 
-let barData = [
-  {
-    name: 'Prairie',
-    age: 6,
-    weight: 21
-  },
-  {
-    name: 'Pippa',
-    age: 8,
-    weight: 25
-  },
-  {
-    name: 'Po',
-    age: 14,
-    weight: 40
-  },
-  {
-    name: 'Ziggy',
-    age: 3,
-    weight: 52
-  },
-  {
-    name: 'Jane Goodall',
-    age: 7,
-    weight: 39
-  },
-];
+// let dummyBarData = [
+//   {
+//     name: 'Prairie',
+//     age: 6,
+//     weight: 21
+//   },
+//   {
+//     name: 'Pippa',
+//     age: 8,
+//     weight: 25
+//   },
+//   {
+//     name: 'Po',
+//     age: 14,
+//     weight: 40
+//   },
+//   {
+//     name: 'Ziggy',
+//     age: 3,
+//     weight: 52
+//   },
+//   {
+//     name: 'Jane Goodall',
+//     age: 7,
+//     weight: 39
+//   },
+// ];
+
+
+//   let stepOne = {
+//     grname: $('grname').val(),
+//     yaxis: $('yaxis').val(),
+//     xaxis: $('xaxis').val(),
+//     numOfBars: $('numOfBars').val
+//   }
 
 // let options = {
 //   width: 5,
@@ -54,10 +64,30 @@ let barData = [
 
 // .width()
 
-// <canvas>	Used to draw graphics, on the fly, via scripting (usually JavaScript)
-
 //.data()
 //Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
+// console.log($('#grname').val());
+
+const basicInfo = () => {
+  $('input#submitbtn1').on('click', function (e) {
+    e.preventDefault();
+
+    const stepOneInput = {
+      grname: $('input#grname').val(),
+      yaxis: $('input#yaxis').val(),
+      xaxis: $('input#xaxis').val(),
+      numOfBars: $('input#numOfBars').val()
+    };
+    barData.push(stepOneInput);
+    console.log(barData)
+    $('form#stepOne').hide();
+    return barData;
+  })
+
+
+
+
+};
 
 
 
@@ -78,8 +108,8 @@ let barData = [
 
 function addBar(num, label) {
   for (let i = 0; i < num; i++) {
-    // let name = barData[i].name
-    const { name, age } = barData[i];
+    let name = barData[i].name
+    // const { name, age } = barData[i];
     $('.graph-container').append('<div class="bar"><p>'+name+'</p></div>');
   }
 }
@@ -147,6 +177,6 @@ let drawBarChart = (data, options, element) => {
 $(document).ready(function () {
   addBar(barData.length);
   setChartNames();
+  basicInfo();
   drawBarChart();
-}
-)
+})

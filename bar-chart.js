@@ -33,44 +33,26 @@
 //Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
 
 
-// $(function(){  //equivalent to $(document).read(function(){});
-// //you are running "joID(form)" on submit now, but have it written/called right in the html.  i try to avoid that.
-//   $("form[name='JobIdForm']").submit(function(event){
-// //i did not see an actual form[action] value, so I preventDefault() to call that out
-//     event.preventDefault();
-// //we want the value in bob, so I have jQuery create a <div> and throw the input value between the element tags
-//     $("#bob").append($("<div>"+$(this).find("input[name='jobid']").val()+"</div>");
-//   });
 
-// });
-// html needed to make the above work:
-// <form name="JobIdForm" action="" method="post">
-// <label>Job ID <input type="text" name="jobid"></label>
-// <input type="submit" value="Submit">
-
-// </form>
 
 // function basicInfo()
-$('#stepOne').submit(function (e) {
-  e.preventDefault();
+// $('#stepOne').submit(function (e) {
+//   e.preventDefault();
+//   let stepOne = {
+//     grname: $('grname').val(),
+//     yaxis: $('yaxis').val(),
+//     xaxis: $('xaxis').val(),
+//     numOfBars: $('numOfBars').val
+//   }
+// });
 
-  // let title = $('#title').val();
-  // let body = $('#body').val();
-  // let url = $(this).attr('action');
+// console.log(stepOne)
 
-  let stepOne = {
-    grname: $('grname').val(),
-    yaxis: $('yaxis').val(),
-    xaxis: $('xaxis').val(),
-    numOfBars: $('numOfBars').val
+
+function addBar(num) {
+  for (let i = 0; i < num; i++) {
+    $('.graph-container').append('<div class="bar"></div>');
   }
-});
-
-console.log(stepOne)
-
-
-function addBar() {
-  $('.graph-container').append('<div class="bar"></div>')
 }
 
 
@@ -129,7 +111,7 @@ let drawBarChart = (data, options, element) => {
 // Customizable bar colours, per value
 // Customizable label colours
 $(document).ready(function () {
-  addBar()
-  drawBarChart()
+  addBar(15);
+  drawBarChart();
 }
 )

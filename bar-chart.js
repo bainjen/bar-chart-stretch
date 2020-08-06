@@ -30,11 +30,16 @@ let options = {
 // <canvas>	Used to draw graphics, on the fly, via scripting (usually JavaScript)
 
 function addBar() {
-
+  $('.graph-container').append('<div class="bar"></div>')
 }
+
+
+
+
 
 //this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
 let drawBarChart = (data, options, element) => {
+  console.log("my name is jen")
 
 };
 
@@ -84,3 +89,8 @@ let drawBarChart = (data, options, element) => {
 
 // Customizable bar colours, per value
 // Customizable label colours
+$(document).ready(function () {
+  addBar()
+  drawBarChart()
+}
+)

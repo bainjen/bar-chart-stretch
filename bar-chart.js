@@ -80,6 +80,7 @@ let graphData = {};
 // }
 
 
+
 const basicInfo = () => {
   $('input#submitbtn1').on('click', function (e) {
     e.preventDefault();
@@ -110,7 +111,6 @@ const basicInfo = () => {
     let xNames = $('form#stepTwo').append('<label for="xaxis">' + $('input#xaxis').val() + ' ' + [i + 1] + '</label><input type="text" id="xaxis" name="xaxis"><br><br>')
     let yNames =$('form#stepTwo').append('<label for= "yaxis" > '+$('input#yaxis').val()+' '+[i+1]+'</label > <input type="text" id="yaxis" name="yaxis"><br><br>')
     console.log('hello')
-    console.log(xNames, yNames);
   }
 
     $('form#stepTwo').append('<input type="button" id="submitbtn2" value="Submit"></input>')

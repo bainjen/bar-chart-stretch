@@ -2,7 +2,7 @@
 
 let chartName;
 let barData = [];
-let graphData;
+let graphData = {};
 
 //need to tie this to user submission
 
@@ -73,36 +73,32 @@ const basicInfo = () => {
   $('input#submitbtn1').on('click', function (e) {
     e.preventDefault();
 
-    const stepOneInput = {
+    graphData = {
       grname: $('input#grname').val(),
       yaxis: $('input#yaxis').val(),
       xaxis: $('input#xaxis').val(),
-      numOfBars: $('input#numOfBars').val()
+      numOfBars: Number($('input#numOfBars').val())
     };
-    graphData = stepOneInput;
-    console.log(graphData);
-    console.log(barData)
+    // graphData = stepOneInput;
+    // console.log(graphData);
+    // console.log(barData)
     $('form#stepOne').hide();
-    return graphData;
-  })
+    console.log(graphData.numOfBars);
 
+
+  }); return graphData;
 };
 
+console.log(graphData)
 
+function barInfo() {
+  console.log(graphData);
+  for (let i = 0; i < graphData.numOfBars; i++) {
+    // $('form#stepTwo').append('<label for="xaxis">'+$('graphData.xaxis')+'</label><input type="text" id="xaxis" name="xaxis"><br><br><label for="yaxis">'+$('graphData.yaxis')+'</label><input type="text" id="yaxis" name="yaxis"><br><br>')
+    console.log('hello')
+  }
 
-
-// function basicInfo()
-// $('#stepOne').submit(function (e) {
-//   e.preventDefault();
-//   let stepOne = {
-//     grname: $('grname').val(),
-//     yaxis: $('yaxis').val(),
-//     xaxis: $('xaxis').val(),
-//     numOfBars: $('numOfBars').val
-//   }
-// });
-
-// console.log(stepOne)
+}
 
 
 function addBar(num, label) {
@@ -120,12 +116,25 @@ function setChartNames() {
 
 
 
-
 //this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
 let drawBarChart = (data, options, element) => {
   console.log("my name is jen")
 
+
 };
+
+
+$(document).ready(function () {
+  basicInfo();
+  barInfo();
+
+  addBar(barData.length);
+  setChartNames();
+  drawBarChart();
+
+})
+
+
 
 //INSTRUCTIONS FROM COMPASS
 // The data parameter will be the data the chart should work from Start with just an Array of numbers
@@ -173,9 +182,3 @@ let drawBarChart = (data, options, element) => {
 
 // Customizable bar colours, per value
 // Customizable label colours
-$(document).ready(function () {
-  addBar(barData.length);
-  setChartNames();
-  basicInfo();
-  drawBarChart();
-})

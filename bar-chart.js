@@ -97,27 +97,39 @@ const basicInfo = () => {
     // graphData = stepOneInput;
     // console.log(graphData);
     // console.log(barData)
-    // $('form#stepOne').hide();
+    $('form#stepOne').hide();
     // barInfo(graphData)
   console.log(graphData)
-  return graphData
+    // return graphData
 
+
+// function barInfo() {
+  // const graphData = basicInfo()
+  // console.log(graphData);
+  for (let i = 0; i < graphData.numOfBars; i++) {
+    let xNames = $('form#stepTwo').append('<label for="xaxis">' + $('input#xaxis').val() + ' ' + [i + 1] + '</label><input type="text" id="xaxis" name="xaxis"><br><br>')
+    let yNames =$('form#stepTwo').append('<label for= "yaxis" > '+$('input#yaxis').val()+' '+[i+1]+'</label > <input type="text" id="yaxis" name="yaxis"><br><br>')
+    console.log('hello')
+    console.log(xNames, yNames);
+  }
+
+    $('form#stepTwo').append('<input type="button" id="submitbtn2" value="Submit"></input>')
+    $('input#submitbtn2').on('click', function (e) {
+      e.preventDefault;
+      console.log('submitted')
+      // let newData1 = document.getElementById("input#xaxis").value;
+      // let newData2 = $('input#yaxis').value;
+
+    })
+  // return newForms;
+// }
   });
 
 };
 
 
 
-function barInfo() {
-  // const graphData = basicInfo()
-  // console.log(graphData);
-  for (let i = 0; i < 3; i++) {
-    $('form#stepTwo').append('<label for="xaxis">'+$('graphData.xaxis')+'</label><input type="text" id="xaxis" name="xaxis"><br><br><label for="yaxis">'+$('graphData.yaxis')+'</label><input type="text" id="yaxis" name="yaxis"><br><br>')
-    console.log('hello')
-  }
-  $('form#stepTwo').append('<input type="button" id="submitbtn1" value="Submit"></input>')
 
-}
 
 
 function addBar(num, label) {
@@ -145,7 +157,7 @@ let drawBarChart = (data, options, element) => {
 
 $(document).ready(function () {
   basicInfo();
-  barInfo();
+  // barInfo();
   addBar(barData.length);
   setChartNames();
   drawBarChart();

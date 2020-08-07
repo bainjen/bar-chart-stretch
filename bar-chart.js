@@ -1,8 +1,5 @@
 
 
-let chartName;
-let barData = [];
-let graphData = {};
 
 //need to tie this to user submission
 
@@ -69,9 +66,24 @@ let graphData = {};
 //Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
 // console.log($('#grname').val());
 
+
+let chartName;
+let barData = [];
+let graphData = {};
+
+
+// const barInfo = (data) => {
+//   const { numOfBars } = data;
+//   for (let i = 0; i < numOfBars; i++){
+//     console.log('hello')
+//   }
+// }
+
+
 const basicInfo = () => {
   $('input#submitbtn1').on('click', function (e) {
     e.preventDefault();
+
 
     graphData = {
       grname: $('input#grname').val(),
@@ -79,24 +91,31 @@ const basicInfo = () => {
       xaxis: $('input#xaxis').val(),
       numOfBars: Number($('input#numOfBars').val())
     };
+
+
+
     // graphData = stepOneInput;
     // console.log(graphData);
     // console.log(barData)
-    $('form#stepOne').hide();
-    console.log(graphData.numOfBars);
+    // $('form#stepOne').hide();
+    // barInfo(graphData)
+  console.log(graphData)
+  return graphData
 
+  });
 
-  }); return graphData;
 };
 
-console.log(graphData)
+
 
 function barInfo() {
-  console.log(graphData);
-  for (let i = 0; i < graphData.numOfBars; i++) {
-    // $('form#stepTwo').append('<label for="xaxis">'+$('graphData.xaxis')+'</label><input type="text" id="xaxis" name="xaxis"><br><br><label for="yaxis">'+$('graphData.yaxis')+'</label><input type="text" id="yaxis" name="yaxis"><br><br>')
+  // const graphData = basicInfo()
+  // console.log(graphData);
+  for (let i = 0; i < 3; i++) {
+    $('form#stepTwo').append('<label for="xaxis">'+$('graphData.xaxis')+'</label><input type="text" id="xaxis" name="xaxis"><br><br><label for="yaxis">'+$('graphData.yaxis')+'</label><input type="text" id="yaxis" name="yaxis"><br><br>')
     console.log('hello')
   }
+  $('form#stepTwo').append('<input type="button" id="submitbtn1" value="Submit"></input>')
 
 }
 
@@ -127,7 +146,6 @@ let drawBarChart = (data, options, element) => {
 $(document).ready(function () {
   basicInfo();
   barInfo();
-
   addBar(barData.length);
   setChartNames();
   drawBarChart();

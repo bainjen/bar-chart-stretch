@@ -4,27 +4,22 @@ let data = [
   {
     name: 'Prairie',
     age: 6,
-    weight: 21
   },
   {
     name: 'Pippa',
     age: 8,
-    weight: 25
   },
   {
     name: 'Po',
     age: 14,
-    weight: 40
   },
   {
     name: 'Ziggy',
     age: 3,
-    weight: 52
   },
   {
     name: 'Jane Goodall',
     age: 7,
-    weight: 39
   },
 ];
 
@@ -35,33 +30,109 @@ let options = {
   chartNameSize: '37px',
   chartNameColor: 'red',
   width: 5,
-  height: 10,
-  barColor: 'red',
-  labelColor: 'black',
-  titleMain: 'Hello',
-  titleY: 'y title',
-  titleX: 'x title',
+  height: '100%',
+  barColor: 'yellow',
+  barLabelColor: 'red',
+  barLabelSize: '16px',
+  titleY: 'ages',
+  titleYSize: '27px',
+  titleX: 'names',
+  titleXSize: '27px'
 
 };
 
 
 function createGraphArea(element, options) {
-  $(element).append(`<div class="graph-section">
+  $(element).append(`
+  <div class="graph-section">
     <h1 class="graph-title">${options.chartName}</h1>
-    <div class="graph-container"></div></div>`);
+    <div class='Y-Graph'>
+      <div id='y-title'><h3 class='y-title'>${options.titleY}</h3></div>
+      <div class="graph-container"></div>
+    </div>
+    <h3 class='x-title'>${options.titleX}</h3>
+  </div>`);
 
   $('.graph-title').css({ 'color': options.chartNameColor, 'font-size': options.chartNameSize });
+  $('.Y-Graph').css({ 'display': 'flex', 'flex-direction': 'row' });
+  $('#y-title').css({
+    'display': 'flex',
+    'align-items': 'center'
+  })
+  $('.y-title').css({
+    'transform': 'rotate(-90deg)',
+    'margin': '1em',
+    'font-size': options.titleYSize
+  });
+  $('.graph-container').css({
+    'display': 'flex',
+    'justify-content': 'space-evenly',
+    'height': '70vh'
+  });
 }
 
 
-function addBar(data) {
+function addBar(data, xVar, yVar) {
   for (let i = 0; i < data.length; i++) {
-    $('.graph-container').append(`<div class="bar"><p>${data[i].name}</p></div>`);
+    $('.graph-container').append(`<div class="bar"><p class='yData'>${data[i][yVar]}</p><p class='xData'>${data[i][xVar]}</p></div>`);
   }
+  $('.bar').css({
+    'display': 'flex',
+    'flex-direction': 'column',
+    'justify-content': 'space-between',
+    'align-items': 'center',
+    'margin-bottom': '0',
+    'background-color': options.barColor,
+    'height': options.height
+  });
+  $('.yData').css(
+    {
+      'color': options.barLabelColor,
+      'font-size': options.barLabelSize
+    })
+  $('.xData').css(
+    {
+      'color': options.barLabelColor,
+      'font-size': options.barLabelSize,
+      'margin-bottom': '0'
+    })
 }
 
+function setBarHeight(data, yKey, options) {
+
+  let yAxisHeight;
+  console.log(yAxisHeight);
+  let max = 0;
+  for (let j = 0; j < data.length; j++) {
+    if (data[j][yKey] > max) {
+      max = data[j][yKey];
+    }
+    if (data[j][yKey] < max) {
+      $('.bar').css('height', '15px')
+    }
 
 
+  }
+
+  console.log(max)
+}
+
+setBarHeight(data, 'age', options);
+
+//this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
+let drawBarChart = (data, options, element) => {
+  console.log("my name is jen")
+
+
+};
+
+
+$(document).ready(function () {
+  createGraphArea('main', options);
+  addBar(data, 'name', 'age');
+  drawBarChart();
+
+})
 
 
 //A FEW BASICS
@@ -150,9 +221,6 @@ function addBar(data) {
 
 
 
-
-
-
 // function addBar(num, label) {
 //   for (let i = 0; i < num; i++) {
 //     let name = barData[i].name
@@ -166,23 +234,6 @@ function addBar(data) {
 // //need to tie this to user submission
 // }
 
-
-
-//this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
-let drawBarChart = (data, options, element) => {
-  console.log("my name is jen")
-
-
-};
-
-
-$(document).ready(function () {
-  createGraphArea('main', options);
-  addBar(data);
-  setChartName(options);
-  drawBarChart();
-
-})
 
 
 

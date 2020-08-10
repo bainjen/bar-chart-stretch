@@ -1,12 +1,6 @@
-html {
-  background-color: gainsboro;
-}
-header {
-  background-color: darkkhaki;
-}
 
 main {
-  background-color: cornsilk;
+  background-color: rgb(158, 220, 220);
 }
 
 body {
@@ -29,18 +23,15 @@ body {
   display: flex;
   align-items: flex-end;
   width: 75vw;
-  height:75vh;
+  /* height:75vh; */
   border-style: solid;
-  border-color: black;
-  background-color: blueviolet;
+  border-color: gray;
+  background-color: white;
   margin: 1em;
 }
 
 .bar {
-  background-color: chartreuse;
-  border-style: dotted;
-  width: 12vw;
-  height: 40vh;
+  width: 15%;
+  height: 100%;
   margin: 7px;
-
 }

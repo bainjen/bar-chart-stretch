@@ -29,10 +29,11 @@ body {
   display: flex;
   align-items: flex-end;
   width: 75vw;
-  height:50vh;
+  height:75vh;
   border-style: solid;
   border-color: black;
   background-color: blueviolet;
+  margin: 1em;
 }
 
 .bar {

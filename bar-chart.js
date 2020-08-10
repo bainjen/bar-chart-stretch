@@ -1,54 +1,68 @@
 
 
-
-//need to tie this to user submission
-
-// let dummyBarData = [
-//   {
-//     name: 'Prairie',
-//     age: 6,
-//     weight: 21
-//   },
-//   {
-//     name: 'Pippa',
-//     age: 8,
-//     weight: 25
-//   },
-//   {
-//     name: 'Po',
-//     age: 14,
-//     weight: 40
-//   },
-//   {
-//     name: 'Ziggy',
-//     age: 3,
-//     weight: 52
-//   },
-//   {
-//     name: 'Jane Goodall',
-//     age: 7,
-//     weight: 39
-//   },
-// ];
+let data = [
+  {
+    name: 'Prairie',
+    age: 6,
+    weight: 21
+  },
+  {
+    name: 'Pippa',
+    age: 8,
+    weight: 25
+  },
+  {
+    name: 'Po',
+    age: 14,
+    weight: 40
+  },
+  {
+    name: 'Ziggy',
+    age: 3,
+    weight: 52
+  },
+  {
+    name: 'Jane Goodall',
+    age: 7,
+    weight: 39
+  },
+];
 
 
-//   let stepOne = {
-//     grname: $('grname').val(),
-//     yaxis: $('yaxis').val(),
-//     xaxis: $('xaxis').val(),
-//     numOfBars: $('numOfBars').val
-//   }
 
-// let options = {
-//   width: 5,
-//   height: 10,
-//   barColor: 'red',
-//   labelColor: 'black',
-//   titleMain: 'Hello',
-//   titleY: 'y title',
-//   titleX: 'x title',
+let options = {
+  chartName: 'My dogs',
+  chartNameSize: '37px',
+  chartNameColor: 'red',
+  width: 5,
+  height: 10,
+  barColor: 'red',
+  labelColor: 'black',
+  titleMain: 'Hello',
+  titleY: 'y title',
+  titleX: 'x title',
 
-// }
+};
+
+
+function createGraphArea(element, options) {
+  $(element).append(`<div class="graph-section">
+    <h1 class="graph-title">${options.chartName}</h1>
+    <div class="graph-container"></div></div>`);
+
+  $('.graph-title').css({ 'color': options.chartNameColor, 'font-size': options.chartNameSize });
+}
+
+
+function addBar(data) {
+  for (let i = 0; i < data.length; i++) {
+    $('.graph-container').append(`<div class="bar"><p>${data[i].name}</p></div>`);
+  }
+}
+
+
+
+
 
 //A FEW BASICS
 // .add()
@@ -67,9 +81,16 @@
 // console.log($('#grname').val());
 
 
-let chartName;
-let barData = [];
-let graphData = {};
+//   let stepOne = {
+//     grname: $('grname').val(),
+//     yaxis: $('yaxis').val(),
+//     xaxis: $('xaxis').val(),
+//     numOfBars: $('numOfBars').val
+//   }
+
+// let chartName;
+// let barData = [];
+// let graphData = {};
 
 
 // const barInfo = (data) => {
@@ -81,69 +102,69 @@ let graphData = {};
 
 
 
-const basicInfo = () => {
-  $('input#submitbtn1').on('click', function (e) {
-    e.preventDefault();
+// const basicInfo = () => {
+//   $('input#submitbtn1').on('click', function (e) {
+//     e.preventDefault();
 
 
-    graphData = {
-      grname: $('input#grname').val(),
-      yaxis: $('input#yaxis').val(),
-      xaxis: $('input#xaxis').val(),
-      numOfBars: Number($('input#numOfBars').val())
-    };
+//     graphData = {
+//       grname: $('input#grname').val(),
+//       yaxis: $('input#yaxis').val(),
+//       xaxis: $('input#xaxis').val(),
+//       numOfBars: Number($('input#numOfBars').val())
+//     };
 
 
 
-    // graphData = stepOneInput;
-    // console.log(graphData);
-    // console.log(barData)
-    $('form#stepOne').hide();
-    // barInfo(graphData)
-  console.log(graphData)
-    // return graphData
+//     // graphData = stepOneInput;
+//     // console.log(graphData);
+//     // console.log(barData)
+//     $('form#stepOne').hide();
+//     // barInfo(graphData)
+//   console.log(graphData)
+//     // return graphData
 
 
-// function barInfo() {
-  // const graphData = basicInfo()
-  // console.log(graphData);
-  for (let i = 0; i < graphData.numOfBars; i++) {
-    let xNames = $('form#stepTwo').append('<label for="xaxis">' + $('input#xaxis').val() + ' ' + [i + 1] + '</label><input type="text" id="xaxis" name="xaxis"><br><br>')
-    let yNames =$('form#stepTwo').append('<label for= "yaxis" > '+$('input#yaxis').val()+' '+[i+1]+'</label > <input type="text" id="yaxis" name="yaxis"><br><br>')
-    console.log('hello')
-  }
+// // function barInfo() {
+//   // const graphData = basicInfo()
+//   // console.log(graphData);
+//   for (let i = 0; i < graphData.numOfBars; i++) {
+//     let xNames = $('form#stepTwo').append('<label for="xaxis">' + $('input#xaxis').val() + ' ' + [i + 1] + '</label><input type="text" id="xaxis" name="xaxis"><br><br>')
+//     let yNames =$('form#stepTwo').append('<label for= "yaxis" > '+$('input#yaxis').val()+' '+[i+1]+'</label > <input type="text" id="yaxis" name="yaxis"><br><br>')
+//     console.log('hello')
+//   }
 
-    $('form#stepTwo').append('<input type="button" id="submitbtn2" value="Submit"></input>')
-    $('input#submitbtn2').on('click', function (e) {
-      e.preventDefault;
-      console.log('submitted')
-      // let newData1 = document.getElementById("input#xaxis").value;
-      // let newData2 = $('input#yaxis').value;
+//     $('form#stepTwo').append('<input type="button" id="submitbtn2" value="Submit"></input>')
+//     $('input#submitbtn2').on('click', function (e) {
+//       e.preventDefault;
+//       console.log('submitted')
+//       // let newData1 = document.getElementById("input#xaxis").value;
+//       // let newData2 = $('input#yaxis').value;
 
-    })
-  // return newForms;
+//     })
+//   // return newForms;
+// // }
+//   });
+
+// };
+
+
+
+
+
+
+// function addBar(num, label) {
+//   for (let i = 0; i < num; i++) {
+//     let name = barData[i].name
+//     // const { name, age } = barData[i];
+//     $('.graph-container').append('<div class="bar"><p>'+name+'</p></div>');
+//   }
 // }
-  });
 
-};
-
-
-
-
-
-
-function addBar(num, label) {
-  for (let i = 0; i < num; i++) {
-    let name = barData[i].name
-    // const { name, age } = barData[i];
-    $('.graph-container').append('<div class="bar"><p>'+name+'</p></div>');
-  }
-}
-
-function setChartNames() {
-  $('.graph-title').replaceWith(chartName);
-//need to tie this to user submission
-}
+// function setChartNames() {
+//   $('.graph-title').replaceWith(chartName);
+// //need to tie this to user submission
+// }
 
 
 
@@ -156,10 +177,9 @@ let drawBarChart = (data, options, element) => {
 
 
 $(document).ready(function () {
-  basicInfo();
-  // barInfo();
-  addBar(barData.length);
-  setChartNames();
+  createGraphArea('main', options);
+  addBar(data);
+  setChartName(options);
   drawBarChart();
 
 })

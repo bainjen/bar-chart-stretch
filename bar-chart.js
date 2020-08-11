@@ -42,9 +42,33 @@ let options = {
 
 };
 
-function appendTicks(options) {
+function findMaxY(data, yKey) {
+  let max = 0;
+  for (let j = 0; j < data.length; j++) {
+    let num = data[j][yKey];
+    if (num > max) {
+      max = num;
+    }
+  }
+  return max;
+};
+
+function convertBarPercent(value, maxValue) {
+  return (value / maxValue) * 100;
+};
+
+function appendTicks(options, data) {
+  const maxVal = findMaxY(data, 'age')
+  console.log(maxVal);
+  console.log(options.numOfTicks);
+  const numAreas = parseInt(options.numOfTicks) + 1
+  console.log(numAreas)
+  const interval = maxVal/ numAreas
+  console.log(interval);
+
   for (l = 0; l < options.numOfTicks; l++) {
-    $('.y-ticks').append(`<p id='grid-line'>num</p>`);
+    const currentTickVal = (l + 1) * interval
+    $('.y-ticks').append(`<p id='grid-line'>${currentTickVal.toFixed(1)}</p>`);
     // $('#grid-line').css({
     //   // 'display': 'flex',
     //   'color': 'gray',
@@ -52,20 +76,20 @@ function appendTicks(options) {
     // });
     $('.y-ticks').css({
       'display': 'flex',
-      'flex-direction': 'column',
+      'flex-direction': 'column-reverse',
       'position': 'absolute',
       'left': '18%',
       'height': '70vh',
       'padding-top': '1em',
       'width': '12px',
       'justify-content': 'space-evenly',
-      'color': 'orange'
+      'color': 'green'
       // 'border': '2px black solid'
     })
   }
 }
 
-function createGraphArea(element, options) {
+function createGraphArea(element, options, data) {
   $(element).append(`
   <div class="graph-section">
     <h1 class="graph-title">${options.chartName}</h1>
@@ -101,25 +125,12 @@ function createGraphArea(element, options) {
     'padding-top': '1em'
   });
 
-  appendTicks(options);
+  appendTicks(options, data);
 }
 
 
 
-function findMaxY(data, yKey) {
-  let max = 0;
-  for (let j = 0; j < data.length; j++) {
-    let num = data[j][yKey];
-    if (num > max) {
-      max = num;
-    }
-  }
-  return max;
-};
 
-function convertBarPercent(value, maxValue) {
-  return (value / maxValue) * 100;
-};
 
 function addBar(data, xVar, yVar) {
   const maxVal = findMaxY(data, yVar);
@@ -164,7 +175,7 @@ let drawBarChart = (data, options, element) => {
 
 
 $(document).ready(function () {
-  createGraphArea('main', options);
+  createGraphArea('main', options, data);
   addBar(data, 'name', 'age');
   // appendTicks(options);
   drawBarChart();

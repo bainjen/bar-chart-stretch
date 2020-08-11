@@ -30,7 +30,7 @@ let options = {
   chartNameSize: '37px',
   chartNameColor: 'red',
   width: 5,
-  height: '100%',
+  height: '50%',
   barColor: 'yellow',
   barLabelColor: 'red',
   barLabelSize: '16px',
@@ -98,26 +98,42 @@ function addBar(data, xVar, yVar) {
     })
 }
 
-function setBarHeight(data, yKey, options) {
-
-  let yAxisHeight;
-  console.log(yAxisHeight);
+function findMaxY(data, yKey) {
   let max = 0;
   for (let j = 0; j < data.length; j++) {
-    if (data[j][yKey] > max) {
-      max = data[j][yKey];
+    let num = data[j][yKey];
+    if (num > max) {
+      max = num;
     }
-    if (data[j][yKey] < max) {
-      $('.bar').css('height', '15px')
-    }
-
-
   }
-
-  console.log(max)
+  return max;
 }
 
+function setBarHeight(data, yKey, options) {
+  let max = findMaxY(data, yKey);
+  console.log(max);
+  for (k = 0; k < data.length; k++) {
+    let num = data[k][yKey];
+    console.log(num);
+    $('.bar').css(`height`, `(num / max) * 100 + %`);
+  }
+}
+
+
 setBarHeight(data, 'age', options);
+
+// if (num = max) {
+//   $('.bar').css('height', '100%')
+// } else if (num < max) {
+//   $('.bar').css('heigt', 'num/max')
+// }
+
+// if (data[j][yKey] < max) {
+//   // $('.bar').css('height', '15px')
+//   console.log(`data[j][ykey] is here!`)
+// }
+
+
 
 //this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
 let drawBarChart = (data, options, element) => {

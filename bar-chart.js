@@ -29,18 +29,41 @@ let options = {
   chartName: 'My dogs',
   chartNameSize: '37px',
   chartNameColor: 'red',
-  width: 5,
-  height: '50%',
+  // width: 5,
+  // height: '50%',
   barColor: 'yellow',
   barLabelColor: 'red',
   barLabelSize: '16px',
-  titleY: 'ages',
+  titleY: 'dog ages',
   titleYSize: '27px',
-  titleX: 'names',
-  titleXSize: '27px'
+  titleX: 'dog names',
+  titleXSize: '27px',
+  numOfTicks: '5'
 
 };
 
+function appendTicks(options) {
+  for (l = 0; l < options.numOfTicks; l++) {
+    $('.y-ticks').append(`<p id='grid-line'>num</p>`);
+    // $('#grid-line').css({
+    //   // 'display': 'flex',
+    //   'color': 'gray',
+
+    // });
+    $('.y-ticks').css({
+      'display': 'flex',
+      'flex-direction': 'column',
+      'position': 'absolute',
+      'left': '18%',
+      'height': '70vh',
+      'padding-top': '1em',
+      'width': '12px',
+      'justify-content': 'space-evenly',
+      'color': 'orange'
+      // 'border': '2px black solid'
+    })
+  }
+}
 
 function createGraphArea(element, options) {
   $(element).append(`
@@ -48,7 +71,9 @@ function createGraphArea(element, options) {
     <h1 class="graph-title">${options.chartName}</h1>
     <div class='Y-Graph'>
       <div id='y-title'><h3 class='y-title'>${options.titleY}</h3></div>
-      <div class="graph-container"></div>
+      <div class="graph-container">
+      <div class='y-ticks'></div>
+      </div>
     </div>
     <h3 class='x-title'>${options.titleX}</h3>
   </div>`);
@@ -58,18 +83,27 @@ function createGraphArea(element, options) {
   $('#y-title').css({
     'display': 'flex',
     'align-items': 'center'
-  })
+  });
   $('.y-title').css({
     'transform': 'rotate(-90deg)',
     'margin': '1em',
     'font-size': options.titleYSize
   });
+  // $('#grid-line').css({
+  //   'color': 'gray',
+
+  // });
+
   $('.graph-container').css({
     'display': 'flex',
     'justify-content': 'space-evenly',
-    'height': '70vh'
+    'height': '70vh',
+    'padding-top': '1em'
   });
+
+  appendTicks(options);
 }
+
 
 
 function findMaxY(data, yKey) {
@@ -81,11 +115,11 @@ function findMaxY(data, yKey) {
     }
   }
   return max;
-}
+};
 
 function convertBarPercent(value, maxValue) {
   return (value / maxValue) * 100;
-}
+};
 
 function addBar(data, xVar, yVar) {
   const maxVal = findMaxY(data, yVar);
@@ -96,7 +130,6 @@ function addBar(data, xVar, yVar) {
     $(`#bar-${i}`).css({
       'height': `${convertBarPercent(data[i][yVar], maxVal)}%`
     })
-
   }
   $('.bar').css({
     'display': 'flex',
@@ -105,7 +138,6 @@ function addBar(data, xVar, yVar) {
     'align-items': 'center',
     'margin-bottom': '0',
     'background-color': options.barColor,
-    // 'height': options.height
   });
   $('.yData').css(
     {
@@ -118,36 +150,8 @@ function addBar(data, xVar, yVar) {
       'font-size': options.barLabelSize,
       'margin-bottom': '0'
     })
-}
+};
 
-
-
-// function setBarHeight(data, yKey, options) {
-//   let max = findMaxY(data, yKey);
-//   let numArray = [];
-//   console.log(max);
-//   for (k = 0; k < data.length; k++) {
-//     let num = data[k][yKey];
-//     let perc = convertBarPercent(num, max)
-//     numArray.push(perc);
-//     // $('.bar').css(`height`, `(num / max) * 100 + %`);
-//   }
-//   console.log(numArray)
-// }
-
-
-// setBarHeight(data, 'age', options);
-
-// if (num = max) {
-//   $('.bar').css('height', '100%')
-// } else if (num < max) {
-//   $('.bar').css('heigt', 'num/max')
-// }
-
-// if (data[j][yKey] < max) {
-//   // $('.bar').css('height', '15px')
-//   console.log(`data[j][ykey] is here!`)
-// }
 
 
 
@@ -162,6 +166,7 @@ let drawBarChart = (data, options, element) => {
 $(document).ready(function () {
   createGraphArea('main', options);
   addBar(data, 'name', 'age');
+  // appendTicks(options);
   drawBarChart();
 
 })

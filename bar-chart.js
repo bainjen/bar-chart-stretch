@@ -72,9 +72,31 @@ function createGraphArea(element, options) {
 }
 
 
+function findMaxY(data, yKey) {
+  let max = 0;
+  for (let j = 0; j < data.length; j++) {
+    let num = data[j][yKey];
+    if (num > max) {
+      max = num;
+    }
+  }
+  return max;
+}
+
+function convertBarPercent(value, maxValue) {
+  return (value / maxValue) * 100;
+}
+
 function addBar(data, xVar, yVar) {
+  const maxVal = findMaxY(data, yVar);
+  console.log(`this is the max val ${maxVal}`)
   for (let i = 0; i < data.length; i++) {
-    $('.graph-container').append(`<div class="bar"><p class='yData'>${data[i][yVar]}</p><p class='xData'>${data[i][xVar]}</p></div>`);
+    $('.graph-container').append(`<div id="bar-${i}" class="bar"><p class='yData'>${data[i][yVar]}</p><p class='xData'>${data[i][xVar]}</p></div>`);
+
+    $(`#bar-${i}`).css({
+      'height': `${convertBarPercent(data[i][yVar], maxVal)}%`
+    })
+
   }
   $('.bar').css({
     'display': 'flex',
@@ -83,7 +105,7 @@ function addBar(data, xVar, yVar) {
     'align-items': 'center',
     'margin-bottom': '0',
     'background-color': options.barColor,
-    'height': options.height
+    // 'height': options.height
   });
   $('.yData').css(
     {
@@ -98,29 +120,23 @@ function addBar(data, xVar, yVar) {
     })
 }
 
-function findMaxY(data, yKey) {
-  let max = 0;
-  for (let j = 0; j < data.length; j++) {
-    let num = data[j][yKey];
-    if (num > max) {
-      max = num;
-    }
-  }
-  return max;
-}
-
-function setBarHeight(data, yKey, options) {
-  let max = findMaxY(data, yKey);
-  console.log(max);
-  for (k = 0; k < data.length; k++) {
-    let num = data[k][yKey];
-    console.log(num);
-    $('.bar').css(`height`, `(num / max) * 100 + %`);
-  }
-}
 
 
-setBarHeight(data, 'age', options);
+// function setBarHeight(data, yKey, options) {
+//   let max = findMaxY(data, yKey);
+//   let numArray = [];
+//   console.log(max);
+//   for (k = 0; k < data.length; k++) {
+//     let num = data[k][yKey];
+//     let perc = convertBarPercent(num, max)
+//     numArray.push(perc);
+//     // $('.bar').css(`height`, `(num / max) * 100 + %`);
+//   }
+//   console.log(numArray)
+// }
+
+
+// setBarHeight(data, 'age', options);
 
 // if (num = max) {
 //   $('.bar').css('height', '100%')

@@ -23,11 +23,11 @@ let data = [
   },
   {
     name: 'Pixie',
-    age: 14,
+    age: 16,
   },
   {
     name: 'Zoe Elizabeth',
-    age: 7,
+    age: 9,
   },
 ];
 
@@ -36,17 +36,20 @@ let data = [
 let options = {
   chartName: 'My dogs',
   chartNameSize: '37px',
-  chartNameColor: 'pink',
-  barColor: 'yellow',
-  barLabelColor: 'red',
-  barLabelSize: '16px',
+  chartNameColor: '#006666',
+  backgroundColor: 'rgb(158, 220, 220)',
+  borderColor: '#e6ffff',
+  barColor: '#ff80df',
+  barLabelColor: '#cc0099',
+  barLabelSize: '17px',
   titleY: 'dog ages',
   titleYSize: '27px',
-  titleYColor: 'violet',
+  titleYColor: '#006666',
   titleX: 'dog names',
   titleXSize: '27px',
-  titleXColor: 'violet',
-  numOfTicks: '7'
+  titleXColor: '#006666',
+  numOfTicks: '7',
+  valColor: '#e6ffff'
 
 };
 
@@ -87,10 +90,8 @@ function appendTicks(options, data) {
       'left': '-35px',
       'height': '70vh',
       'padding-top': '1em',
-      // 'width': '12px',
       'justify-content': 'space-evenly',
-      'color': 'green'
-      // 'border': '2px black solid'
+      'color': options.valColor
     })
 
     $(`#tickdiv-${l}`).css({
@@ -101,25 +102,16 @@ function appendTicks(options, data) {
     $(`#tickval-${l}`).css({
       'position': 'absolute',
       'left': '-3px',
-      // 'width': '40px',
       'height': '2px',
-      // 'margin-bottom': '2px',
-      // 'background-color': 'black',
-      // 'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
-      // 'bottom': `${20 * (l + 1)}%`
-      // 'bottom': `${chartHeight * ((l + 1)/ parseInt(options.numTicks) )}px`
     })
 
     $(`#tickline-${l}`).css({
       'position': 'absolute',
       'left': '-3px',
-      'width': '78vw',
+      'width': '79vw',
       'height': '2px',
-      'background-color': 'black',
+      'background-color': options.valColor,
       'opacity': '25%',
-      // 'bottom': `${20 * (l + 1)}%`
-      // 'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
-      // 'bottom': `${chartHeight * ((l + 1)/ parseInt(options.numTicks) )}px`
     })
 
 
@@ -155,16 +147,13 @@ function createGraphArea(element, options, data) {
     'font-size': options.titleXSize,
     'color': options.titleXColor
   });
-  // $('#grid-line').css({
-  //   'color': 'gray',
-
-  // });
 
   $('.graph-container').css({
     'display': 'flex',
     'justify-content': 'space-evenly',
     'height': '70vh',
-    'padding-top': '1em'
+    'padding-top': '1em',
+    'background-color' : options.backgroundColor
   });
 
   console.log($('.graph-container').height())
@@ -181,6 +170,10 @@ function addBar(data, xVar, yVar) {
   for (let i = 0; i < data.length; i++) {
     $('.graph-container').append(`<div id="bar-${i}" class="bar"><p class='yData'>${data[i][yVar]}</p><p class='xData'>${data[i][xVar]}</p></div>`);
 
+    $('.graph-container').css({
+      'border-color' : options.borderColor
+    })
+
     $(`#bar-${i}`).css({
       'height': `${convertBarPercent(data[i][yVar], maxVal)}%`
     })
@@ -192,17 +185,23 @@ function addBar(data, xVar, yVar) {
     'align-items': 'center',
     'margin-bottom': '0',
     'background-color': options.barColor,
+    'font-family': "'Yantramanav', sans-serif"
   });
+
   $('.yData').css(
     {
       'color': options.barLabelColor,
-      'font-size': options.barLabelSize
+      'font-size': options.barLabelSize,
+      'text-align': 'center',
+      'margin-top': '-1em',
     })
   $('.xData').css(
     {
       'color': options.barLabelColor,
       'font-size': options.barLabelSize,
-      'margin-bottom': '0'
+      'margin-bottom': '-2em',
+      'margin-top': '2px',
+      'text-align': 'center'
     })
 };
 

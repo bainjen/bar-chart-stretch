@@ -59,21 +59,33 @@ function convertBarPercent(value, maxValue) {
 
 function appendTicks(options, data) {
   const maxVal = findMaxY(data, 'age')
-  console.log(maxVal);
-  console.log(options.numOfTicks);
   const numAreas = parseInt(options.numOfTicks) + 1
-  console.log(numAreas)
-  const interval = maxVal/ numAreas
-  console.log(interval);
+  const interval = maxVal / numAreas
+  const chartHeight = $('.graph-container').height()
+  const chartWidth = $('.graph-container').width()
 
   for (l = 0; l < options.numOfTicks; l++) {
     const currentTickVal = (l + 1) * interval
     $('.y-ticks').append(`<p id='grid-line'>${currentTickVal.toFixed(1)}</p>`);
+
+
     // $('#grid-line').css({
     //   // 'display': 'flex',
     //   'color': 'gray',
 
     // });
+    $('.y-ticks').append(`<div id='tickline-${l}' class='tickline'></div>`)
+
+    $(`#tickline-${l}`).css({
+      'position': 'absolute',
+      'left': '-3px',
+      'width': '40px',
+      'height': '2px',
+      'background-color': 'black',
+      'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
+      // 'bottom': `${chartHeight * ((l + 1)/ parseInt(options.numTicks) )}px`
+    })
+
     $('.y-ticks').css({
       'display': 'flex',
       'flex-direction': 'column-reverse',
@@ -125,9 +137,11 @@ function createGraphArea(element, options, data) {
     'padding-top': '1em'
   });
 
+  console.log($('.graph-container').height())
+
+
   appendTicks(options, data);
 }
-
 
 
 

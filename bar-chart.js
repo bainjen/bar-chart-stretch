@@ -23,7 +23,7 @@ let data = [
   },
   {
     name: 'Pixie',
-    age: 17,
+    age: 14,
   },
   {
     name: 'Zoe Elizabeth',
@@ -36,17 +36,17 @@ let data = [
 let options = {
   chartName: 'My dogs',
   chartNameSize: '37px',
-  chartNameColor: 'red',
-  // width: 5,
-  // height: '50%',
+  chartNameColor: 'pink',
   barColor: 'yellow',
   barLabelColor: 'red',
   barLabelSize: '16px',
   titleY: 'dog ages',
   titleYSize: '27px',
+  titleYColor: 'violet',
   titleX: 'dog names',
   titleXSize: '27px',
-  numOfTicks: '5'
+  titleXColor: 'violet',
+  numOfTicks: '7'
 
 };
 
@@ -70,7 +70,7 @@ function appendTicks(options, data) {
   const numAreas = parseInt(options.numOfTicks) + 1
   const interval = maxVal / numAreas
   const chartHeight = $('.graph-container').height()
-  const chartWidth = $('.graph-container').width() + 20
+  const chartWidth = $('.graph-container').width()
 
   for (l = 0; l < options.numOfTicks; l++) {
     const currentTickVal = (l + 1) * interval
@@ -80,55 +80,45 @@ function appendTicks(options, data) {
                           </div>`);
 
 
-    // $('#grid-line').css({
-    //   // 'display': 'flex',
-    //   'color': 'gray',
-
-    // });
-    // $('.y-ticks').append(`<div id='tickline-${l}' class='tickline'></div>`)
-
     $('.y-ticks').css({
       'display': 'flex',
       'flex-direction': 'column-reverse',
-      'position': 'absolute',
-      'left': '18%',
+      'position': 'relative',
+      'left': '-35px',
       'height': '70vh',
       'padding-top': '1em',
-      'width': '12px',
-      // 'justify-content': 'space-evenly',
+      // 'width': '12px',
+      'justify-content': 'space-evenly',
       'color': 'green'
       // 'border': '2px black solid'
     })
 
-    // $(`#tickdiv-${l}`).css({
-    //   'display': 'flex',
-    //   'flex-direction': 'row',
-    //   'outline': 'solid purple 3px',
-    //   'left': '-3px',
-    //   'width': '40px',
-    //   'height': '2px',
-    //   'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
-    // })
+    $(`#tickdiv-${l}`).css({
+      'display': 'flex',
+      'flex-direction': 'column-reverse',
+    })
 
     $(`#tickval-${l}`).css({
       'position': 'absolute',
       'left': '-3px',
-      'width': '40px',
+      // 'width': '40px',
       'height': '2px',
       // 'margin-bottom': '2px',
       // 'background-color': 'black',
-      'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
+      // 'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
+      // 'bottom': `${20 * (l + 1)}%`
       // 'bottom': `${chartHeight * ((l + 1)/ parseInt(options.numTicks) )}px`
     })
 
     $(`#tickline-${l}`).css({
       'position': 'absolute',
       'left': '-3px',
-      'width': chartWidth,
+      'width': '78vw',
       'height': '2px',
       'background-color': 'black',
       'opacity': '25%',
-      'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
+      // 'bottom': `${20 * (l + 1)}%`
+      // 'bottom': (chartHeight/ (parseInt(options.numOfTicks) + 1)) * (l + 1)
       // 'bottom': `${chartHeight * ((l + 1)/ parseInt(options.numTicks) )}px`
     })
 
@@ -158,7 +148,12 @@ function createGraphArea(element, options, data) {
   $('.y-title').css({
     'transform': 'rotate(-90deg)',
     'margin': '1em',
-    'font-size': options.titleYSize
+    'font-size': options.titleYSize,
+    'color': options.titleYColor
+  });
+  $('.x-title').css({
+    'font-size': options.titleXSize,
+    'color': options.titleXColor
   });
   // $('#grid-line').css({
   //   'color': 'gray',

@@ -5,7 +5,7 @@ main {
 
 body {
   font-size: 18px;
-  color: blue;
+  color: black;
   margin: 1em;
 
 }
@@ -26,7 +26,6 @@ body {
   display: flex;
   align-items: flex-end;
   width: 75vw;
-  /* height:75vh; */
   border-style: solid;
   border-color: gray;
   background-color: white;

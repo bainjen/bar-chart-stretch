@@ -2,6 +2,10 @@
 
 let data = [
   {
+    name: 'Chewey',
+    age: 11,
+  },
+  {
     name: 'Prairie',
     age: 6,
   },
@@ -26,7 +30,7 @@ let data = [
     age: 16,
   },
   {
-    name: 'Zoe Elizabeth',
+    name: 'Zoe',
     age: 9,
   },
 ];
@@ -41,7 +45,7 @@ let options = {
   borderColor: '#e6ffff',
   barColor: '#ff80df',
   barLabelColor: '#cc0099',
-  barLabelSize: '17px',
+  barLabelSize: '16px',
   titleY: 'dog ages',
   titleYSize: '27px',
   titleYColor: '#006666',
@@ -113,6 +117,7 @@ function appendTicks(options, data) {
       'background-color': options.valColor,
       'opacity': '25%',
     })
+
 
 
   }
@@ -210,17 +215,15 @@ function addBar(data, xVar, yVar) {
 
 //this is the final function we should call to draw the chart. I can write other mini functions to go into this final function
 let drawBarChart = (data, options, element) => {
-  console.log("my name is jen")
-
+  createGraphArea('main', options, data);
+  addBar(data, 'name', 'age');
 
 };
 
 
 $(document).ready(function () {
-  createGraphArea('main', options, data);
-  addBar(data, 'name', 'age');
-  // appendTicks(options);
-  drawBarChart();
+
+  drawBarChart(data, options, 'main');
 
 })
 

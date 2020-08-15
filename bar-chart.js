@@ -228,21 +228,8 @@ $(document).ready(function () {
 })
 
 
-//A FEW BASICS
-// .add()
-// Create a new jQuery object with elements added to the set of matched elements.
 
-// .append()
-// Insert content, specified by the parameter, to the end of each element in the set of matched elements.
 
-// .appendTo()
-// Insert every element in the set of matched elements to the end of the target.
-
-// .width()
-
-//.data()
-//Store arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
-// console.log($('#grname').val());
 
 
 //   let stepOne = {
@@ -311,7 +298,6 @@ $(document).ready(function () {
 //   });
 
 // };
-
 
 
 // function addBar(num, label) {
